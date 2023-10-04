@@ -153,7 +153,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 					showGoToPage: true,
 					showRowsPerPage: true,
 					showRowsInfo:false,
-					showRowsDefaultInfo:true,
+					showRowsDefaultInfo:false,
 					//点击分页插件的按钮 会自动调用此方法，我们自己写的
 					onChangePage : function(event, data){
 						pageList(data.currentPage , data.rowsPerPage);
