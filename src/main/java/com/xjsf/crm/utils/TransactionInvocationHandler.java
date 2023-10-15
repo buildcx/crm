@@ -30,6 +30,7 @@ public class TransactionInvocationHandler implements InvocationHandler{
 			System.out.println("进入sql语句");
 			session.commit();
 		}catch(Exception e){
+			//事务回滚
 			session.rollback();
 			e.printStackTrace();
 			

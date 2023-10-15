@@ -25,6 +25,7 @@ public class LoginFilter implements Filter {
         if ("/login.jsp".equals(servletPath) || "/settings/user/login.do".equals(servletPath)){
             chain.doFilter(req,resp);
         }else {
+            //用户已登录不再拦截
             if (user!=null){
                 chain.doFilter(req,resp);
             }else {

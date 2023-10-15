@@ -3,5 +3,37 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xjsf.crm.workbench.dao.ActivityRemarkDao">
-
+    <select id="getCountByAids" resultType="int">
+        select count(*)
+        from tbl_activity_remark
+        where activityid in
+        <foreach collection="array" item="aid" close=")" open="(" separator=",">
+            #{aid}
+        </foreach>
+    </select>
+    <delete id="DeleteByAids" >
+        delete
+        from tbl_activity_remark
+        where activityid in
+        <foreach collection="array" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="showRemakeById" resultType="ActivityRemark">
+        select *
+        from tbl_activity_remark
+        where activityId=#{id}
+        order by createTime desc
+    </select>
+    <delete id="deleteById">
+        delete
+        from tbl_activity_remark
+        where id=#{id};
+    </delete>
+    <insert id="saveRemark">
+        insert into tbl_activity_remark(id,noteContent,createTime,createBy,activityId,editFlag)values(#{id},#{noteContent},#{createTime},#{createBy},#{activityId},#{editFlag})
+    </insert>
+    <update id="updateRemark">
+        update tbl_activity_remark set noteContent = #{noteContent} ,editFlag=#{editFlag},editTime =#{editTime},editBy=#{editBy} where id = #{id}
+    </update>
 </mapper>
